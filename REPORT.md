@@ -213,16 +213,19 @@ Datasets: uniform random integers in `[1, 10⁷]`, seed 2001,
 | 10,000,000 | 220,103,984 | 220,100,699 | +0.001% | 221,112,286 | 242,323,226 | 0.947 |
 
 **Reading the table.** The exact recurrence of §2.3/§2.5 predicts the measured counts to within
-**0.01% for `n ≥ 10⁵`** (0.7% at `n = 10³`, where the finite-size `H_m` and floor/ceiling terms
+**0.01% for `n ≥ 10⁵`** (0.09% at `n = 10³`, where the finite-size `H_m` and floor/ceiling terms
 still matter). The closed form `n log₂n − 2n + 2` is deliberately looser — it underestimates by
 3.4% at `n = 10⁷` — because it prices every merge at `a + b − 2` even at the bottom of the tree.
 
 The last column is the empirical proof of `Θ(n log n)`: `C/(n log₂ n)` is not constant but creeps
 from 0.874 to 0.947 across four orders of magnitude, exactly as `1 − 2/log₂n` predicts for a
 `n log₂n − 2n` law. A pure `Θ(n²)` law would have made this column grow by a factor of ~10⁴, and a
-pure `Θ(n)` law would have shrunk it by ~24. On a log-log plot (Figure 1, left) all three curves
-are straight and parallel with slope slightly above 1 — the fixed vertical offsets between them
-are the constant-factor penalties `Δ(S)·n/S` of §2.5, not a change in growth rate.
+pure `Θ(n)` law would have shrunk it by ~24. Figure 1 (right) plots exactly this ratio for all
+three series: each is nearly flat (confirming `Θ(n log n)`, not a change in growth rate), and the
+fixed vertical gaps between pure/`S=8`/`S=32` are the constant-factor penalties `Δ(S)·n/S` of §2.5.
+Figure 1 (left) plots the `err` column directly — the residual against the exact-recurrence
+model — which is largest and noisiest at `n = 10³` (where the finite-size `H_m` and
+floor/ceiling terms still matter) and settles under ±0.01% by `n = 10⁵`.
 
 ## 4. Experiment (c)(ii) — fixed `n`, varying `S`
 
